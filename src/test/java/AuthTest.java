@@ -14,7 +14,7 @@ public class AuthTest {
         $("[href='/login']").click();
     //3. Заполнить инпуты логина и пароля
         $("[id='login_field']").sendKeys("AngelinaYa97");
-        $("[id='password']").sendKeys("VzssRJr67M@PF9R");
+        $("[id='password']").sendKeys("hdf453");
     //4. Кликнуть на кнопку Sign in
         $(".js-sign-in-button").click();
     //5. Проверить авторизацию
