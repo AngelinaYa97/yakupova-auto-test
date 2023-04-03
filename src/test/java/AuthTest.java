@@ -1,12 +1,18 @@
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 public class AuthTest {
 
     @Test
+    @Severity(CRITICAL)
+    @Owner("AngelinaYa97")
+
     public void shouldAuthorizeTest(){
     //1. Открыть страницу https://github.com/
         open("https://github.com/");
@@ -25,6 +31,6 @@ public class AuthTest {
         $(byText("Your profile")).click();
     //8. Проверить переход на страницу профиля
         $(".p-name").shouldBe(Condition.visible);
-        sleep(2000);
+
 }
 }
