@@ -5,32 +5,38 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 public class AuthTest {
-
     @Test
     @Severity(CRITICAL)
     @Owner("AngelinaYa97")
-
-    public void shouldAuthorizeTest(){
-    //1. Открыть страницу https://github.com/
-        open("https://github.com/");
-    //2. Кликнуть на кнопку Sign in
-        $("[href='/login']").click();
-    //3. Заполнить инпуты логина и пароля
-        $("[id='login_field']").sendKeys("AngelinaYa97");
-        $("[id='password']").sendKeys("hdf453");
-    //4. Кликнуть на кнопку Sign in
-        $(".js-sign-in-button").click();
-    //5. Проверить авторизацию
-        $("[id='global-nav']").shouldBe(Condition.visible);
-    //6. Кликнуть по миниатюре аватарки
-        $("[aria-label='View profile and more']").click();
-    //7. Кликнуть по Your profile
-        $(byText("Your profile")).click();
-    //8. Проверить переход на страницу профиля
-        $(".p-name").shouldBe(Condition.visible);
-
-}
+    public void shouldAuthorizeTest() {
+        step("Открыть страницу https://github.com/", () -> {
+            open("https://github.com/");
+            $(".h0-mktg").shouldBe(Condition.visible);
+        });
+        step("Кликнуть на кнопку Sign in", () -> {
+            $("[href='/login']").click();
+            $("[id=login]").shouldBe(Condition.visible);
+        });
+        step("Заполнить инпуты логина и пароля", () -> {
+            $("[id='login_field']").sendKeys("AngelinaYa97");
+            $("[id='password']").sendKeys("ang43");
+        });
+        step("Кликнуть на кнопку Sign in", () -> {
+            $(".js-sign-in-button").click();
+            $("[id='global-nav']").shouldBe(Condition.visible);
+        });
+        step("Кликнуть по миниатюре аватарки", () -> {
+            $("[aria-label='View profile and more']").click();
+            $("[href='/AngelinaYa97?tab=repositories']")
+                    .shouldBe(Condition.visible);
+        });
+        step("Кликнуть по Your profile", () -> {
+            $(byText("Your profile")).click();
+            $(".p-name").shouldBe(Condition.visible);
+        });
+    }
 }
